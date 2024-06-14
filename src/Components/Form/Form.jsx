@@ -1,64 +1,36 @@
-import "./Form.css";
+// später wieder ausklammern:
+// import "./Form.css";
 
-// Users can input a role, hex value,
-// and contrast text via a form
-// to add a new color to the theme.
+// LATER - once I use it:
+//   import useState
+import { useState } from "react";
 
-// The form should be prefilled with default values
-// to guide user input.
+// LATER - once I use it:
+//    Use a package to generate unique id's like nanoid or ui
+//    import { uid } from "uid";
+
+// ColorForm component:
+//  allows users to msubmit new colors to the theme.
+// only AFTER THIS: Develop a ColorInput component
+// to handle synchronized text and color inputs (see instructions for details:
+//github.com/users/rvoll/projects/1/views/1?pane=issue&itemId=67105882 )
+
+console.log("Form.jsx is connected!");
 
 export default function Form() {
-  return (
-    // ist es nötig/sinnvol, hier ein div drum zu wrappen?
-    // oder reicht es, dass alles in form steckt?
-    //     <div
-    //       className="color-card"
-    //       style={{
-    //         background: color.hex,
-    //         color: color.contrastText,
-    //       }}
-    //     >
-    <form>
-      {/* add classes for layout with css */}
+  console.log("and here is the function... 😊");
 
-      <label htmlFor="Role">Colour Role</label>
-      <input type="text" role="background main" id="Role"></input>
+  //   // add argument { Form } for Form?
+  //   return (
 
-      {/* inputs for hex and contrastText should include 
-both color and text input types */}
+  // // MOVE <form> tag IN HERE!!! from App.jsx
 
-      <label htmlFor="hexValueText">hex Colour Code</label>
-      <input type="text" role="background main" id="hexValueText"></input>
-
-      <label htmlFor="hexValueColor">hex Colour Code</label>
-      <input type="color" role="background main" id="hexValueColor"></input>
-      {/* use color picker tool, see html form handout, p.3 */}
-      {/* change type then */}
-
-      <label htmlFor="contrastText">Text Contrast</label>
-      <input type="text" role="background main" id="contrastText"></input>
-
-      <label htmlFor="contrastColor">Text Contrast</label>
-      <input type="color" role="background main" id="contrastColor"></input>
-      {/* use color picker tool, see html form handout, p.3 */}
-      {/* change type then */}
-    </form>
-    //     </div>
-  );
+  // );
 }
 
-// export default function Color({ color }) {
-//   return (
-//     <div
-//       className="color-card"
-//       style={{
-//         background: color.hex,
-//         color: color.contrastText,
-//       }}
-//     >
-//       <h3 className="color-card-headline">{color.hex}</h3>
-//       <h4>{color.role}</h4>
-//       <p>contrast: {color.contrastText}</p>
-//     </div>
-//   );
-// }
+Form();
+
+// TASKS:
+// The form should be prefilled with default values to guide user input.
+// Upon submission, the new color is added to the top of the colors
+// and is displayed on a color card to confirm addition.
