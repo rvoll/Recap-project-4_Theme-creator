@@ -1,5 +1,7 @@
 import "./Color.css";
 
+// LEAVE AS IT IS (for now)
+
 export default function Color({ color }) {
   return (
     <div
