@@ -4,11 +4,21 @@ import ColorForm from "./Components/ColorForm/ColorForm";
 import "./App.css";
 import { useState } from "react";
 import { uid } from "uid";
-// DONE FOR NOW
+// DONE WITH ADD COLOR
+
+// NOW - DELETE COLOR:
+// I want to delete a color from the theme, so that I can
+// remove colors that I no longer need or want in my custom theme.
+//
+// - add a remove button in the ColorForm File
+// - use xy to give the button its function
+// - structure/path for the props:
 
 console.log("App.jsx is connected!");
 
-// onSubmitColor muss von hier mitgegeben werden!
+// onSubmitColor muss xy ???
+// von hier (App.jsx) mitgegeben werden!
+
 function App() {
   // von JEssica:
   const [colors, setColors] = useState(initialColors);
@@ -20,16 +30,43 @@ function App() {
 
     setColors([{ ...newColor, id: uid() }, ...colors]);
   }
+  // ------------------------------------
+  // DIENSTAG: Also muss auch onSubmitRemoveColor
+  // von hier mitgegeben werden.
+
+  // function handleRemoveColor(newColor) {
+  // jetzt wird eine color von den
+  // (???initial) colors weggenommen:
+
+  //   setColors([{ ...newColor, id: uid() }, ...colors]);
+  // }
+
+  // =======================================
+  // Hier kommt die Filterfunktion rein:
+  // setColors([---HIER WEITER!!!------HIER WEITER!!!------HIER WEITER!!!---])
+  // Muss ich hier eine andereVariable benutzen?
+  // Sowas wie reducedColors, äquivalent zu allColors bei AddColor?
+
+  // =======================================
+
   return (
     <>
       <h1>Theme Creator</h1>
-      {/* jetzt geben wir der CoorForm noch eine property mit (geben wir runter von der App js) */}
+      {/* Bem.: jetzt geben wir der ColorForm noch eine property mit 
+      (die geben wir runter von der App js) */}
       <ColorForm onSubmitColor={handleAddColor} />
-      {/* replace {initialcolors.map((color) => { */}
+      {/*  */}
+      {/* --------------------------------------- */}
+      {/* DIENSTAG NEU: REMOVE COLOR: 
+    maybe find better name than "onSubmitRemoveColor"?
+    e.g. "onSubmitRemoveColor"? Or is the Submit-part essential for its function?, 
+    i.e. part of the syntax?*/}
+      {/* <ColorForm onSubmitRemoveColor={handleRemoveColor} /> */}
+      {/* --------------------------------------- */}
+      {/*  */}
       {colors.map((color) => {
         return <Color color={color} key={color.id} />;
       })}
-      {/* </> */}
     </>
   );
 }
