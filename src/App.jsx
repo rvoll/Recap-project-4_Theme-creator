@@ -14,22 +14,50 @@ import { uid } from "uid";
 // - use xy to give the button its function
 // - structure/path for the props:
 
+console.log("sanity check!");
 console.log("App.jsx is connected!");
 
 // onSubmitColor muss xy ???
 // von hier (App.jsx) mitgegeben werden!
 
 function App() {
-  // von JEssica:
+  // =================Warum muss Laura die initialColors nicht importieren??
   const [colors, setColors] = useState(initialColors);
   console.log("allColors", colors);
 
   // Hier definieren wir jetzt die Funktion OnSubmit
   function handleAddColor(newColor) {
     // jetzt wird eine color zu den initial colors hinzugefügt:
-
     setColors([{ ...newColor, id: uid() }, ...colors]);
   }
+  // =============================================
+  // MITTWOCH 24-06-19 (10:44):
+  //
+  // Laura's Wed, 24-06-19 Version - that seems to be working:
+  // ==============================NEW: id as parameter (not prop) of handleDeleteColor
+  // ==========================and 'color.id !== id'
+  // ==================== in the setter function:
+  // ==================== 'setColors(colors.filter((color) => color.id !== id))'
+
+  function handleDeleteColor(id) {
+    console.log("Ich bin die Funktion in der App.js", id);
+    // state updaten https://github.com/neuefische/hh-web-24-3/blob/main/sessions/react-state-3/react-state-3.md#removing-from-an-array
+    setColors(colors.filter((color) => color.id !== id));
+  }
+
+  // my latest version (verworfen!) before Laura found the solution:
+  // // function handleDeleteColor(colorToDelete) {
+  //   console.log("Ich bin die Funktion in der App.js");
+  //   // state updaten https://github.com/neuefische/hh-web-24-3/blob/main/sessions/react-state-3/react-state-3.md#removing-from-an-array
+  //   setColors(colors.filter((color) => color !== colorToDelete));
+  //   // Chat GPT suggests changing the code below to the code in the line above,
+  //   // i.e. simply taking out the square and curly brackets.
+  //   // setColors([{ colors.filter((color) => color !== colorToDelete)}]);
+  // }
+  // //
+  // // woanders: handleRemoveColor(colorToDelete);
+  //=========================================================
+
   // ------------------------------------
   // DIENSTAG: Also muss auch onSubmitRemoveColor
   // von hier mitgegeben werden.
@@ -47,8 +75,9 @@ function App() {
   // Muss ich hier eine andereVariable benutzen?
   // Sowas wie reducedColors, äquivalent zu allColors bei AddColor?
 
-  // =======================================
-
+  // =======================FINE UP TO HERE!!! (same as Laura's)
+  // ============================================
+  // ============================================
   return (
     <>
       <h1>Theme Creator</h1>
@@ -65,7 +94,18 @@ function App() {
       {/* --------------------------------------- */}
       {/*  */}
       {colors.map((color) => {
-        return <Color color={color} key={color.id} />;
+        // ================== return <Color color={color} key={color.id} />;
+        // =============== replaced the line above with the one below
+        // ========= - see esp. 'onDeleteColor={handleColor}' :
+        return (
+          <Color
+            key={color.id}
+            color={color}
+            // there was a mistake here: "handleColor" instead of "handleDeleteColor"
+            // no idea how it got in here!!!
+            onDeleteColor={handleDeleteColor}
+          />
+        );
       })}
     </>
   );
@@ -86,6 +126,16 @@ function App() {
 // properties: id, role, hex, contrastText
 // und "real name" auskommentiert
 
+// =================== bei Laura scheint die Zeile 'export default App'
+// ============ komplett zu fehlen und es funktoniert trotzdem!?<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>;
 export default App;
 
 // Laura's Version (17.06.24):
