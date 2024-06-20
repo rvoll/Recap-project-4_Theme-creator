@@ -2,12 +2,15 @@ import { useState } from "react";
 
 // DONE FOR NOW
 
+// Überarbeiten:
+
+//  Exporting the function 'colorInput' with the Props 'id' and 'defaultValue',
+// lifting (=passing) the State of 'inputValue' up to App.js, in order to use it
+// (a) to adjust the connected input fields for hexCode and Contrast Text
+// and (b) to add the new color in the DOM database/array color.js
+
 export default function ColorInput({ id, defaultValue }) {
-  //  exporting function ColorInput with ?arguments? id and defaultValue
   const [inputValue, setInputValue] = useState(defaultValue);
-  // lifting State of InputValueUp to App.js, in order to use it
-  // (a) to adjust the connected input fields for hexCode and Contrast Text
-  // and (b) to add the new color in the database/array color.js
 
   console.log(inputValue);
 
