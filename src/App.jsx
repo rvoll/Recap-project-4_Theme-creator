@@ -4,7 +4,7 @@ import ColorForm from "./Components/ColorForm/ColorForm";
 import "./App.css";
 import { useState } from "react";
 import { uid } from "uid";
-// DONE WITH ADD COLOR and DELETE COLOR! (SURE IT WORKS???)
+// DONE WITH ADD COLOR and DELETE COLOR!
 
 // ==== NOW CLEAN UP!!! ==== CLEAN UP!!! ==== CLEAN UP!!! ==== CLEAN UP!!!
 // ==== CLEAN UP!!! ==== CLEAN UP!!! ==== CLEAN UP!!! ==== CLEAN UP!!!
@@ -12,45 +12,46 @@ import { uid } from "uid";
 //  ===== AND FIND PROBLEMS!!! (see Terminal/Problems below) ======
 //  ===== AND FIND PROBLEMS!!! (see Terminal/Problems below) ======
 
-// NOW - DELETE COLOR:
-// I want to delete a color from the theme, so that I can
-// remove colors that I no longer need or want in my custom theme.
-//
-// - add a remove button in the ColorForm File
-// - use xy to give the button its function
-// - structure/path for the props:
-
-console.log("sanity check!");
-console.log("App.jsx is connected!");
-
-// onSubmitColor muss xy ???
-// von hier (App.jsx) mitgegeben werden!
+// console.log("App.jsx is connected!");
 
 function App() {
-  // =================Warum muss Laura die initialColors nicht importieren??
   const [colors, setColors] = useState(initialColors);
-  // console.log("allColors", colors);
+  // console.log("allColors: ", colors);
 
-  // Hier definieren wir jetzt die Funktion OnSubmit
+  // Hier definieren wir jetzt die Funktion handleAddColor mit der Parameter 'newColor'
+  // ...und fügen eine Farbe ('newColor') zu den 'colors' hinzu,
+  // sodass sie nicht mehr den Default/Anfangszustand 'initialcolors' haben, sondern jetzt:
+  // quasi " 'colors'(aktueller Stand) = 'initialcolors' + newColor, mit einer neuen id: 'id: uid()';
+  // Wir erstellen einen array (mit '[]'), packen darin aus (mit ...spread):                   (Q: Warum muss man die beiden auspacken, evor man sie gemeinsam in ein array legt?)
+  // 'newColor' und 'colors'
+  // und geben 'newColor' noch einen frischen id mit: 'id: uid()', sprich: "Dein id sei ...".  (Q: nicht sicher wg. id; stimmt das so?)
   function handleAddColor(newColor) {
-    const [colors, setColors] = useState(initialColors);
-    // jetzt wird eine color zu den initial colors hinzugefügt:
     setColors([{ ...newColor, id: uid() }, ...colors]);
   }
-  // =============================================
-  // MITTWOCH 24-06-19 (10:44):
-  //
-  // Laura's Wed, 24-06-19 Version - that seems to be working:
+
   // ==============================NEW: id as parameter (not prop) of handleDeleteColor
   // ==========================and 'color.id !== id'
   // ==================== in the setter function:
   // ==================== 'setColors(colors.filter((color) => color.id !== id))'
 
+  //
+
+  // Wir definieren die Funktion handleDeleteColor
+  // und geben ihr den Parameter (nicht Prop weil Top) 'id' mit.
+  //
+  // In der Funktion filtern wir alle Farben raus,
+  // deren id ( = 'color.id' !!!) nicht mit der Variable(?) 'id' (s.o. in der handleAddColor-Funktion)
+  // identisch ist.                                                                       (Q: Wo kommt die id her? Bzw., wo wird sie mitgegeben? Hier, in handleAddColor?)
+
+  // siehe STATE UPDATEN: https://github.com/neuefische/hh-web-24-3/blob/main/sessions/react-state-3/react-state-3.md#removing-from-an-array
+
   function handleDeleteColor(id) {
     console.log("Ich bin die Funktion in der App.js", id);
-    // state updaten https://github.com/neuefische/hh-web-24-3/blob/main/sessions/react-state-3/react-state-3.md#removing-from-an-array
     setColors(colors.filter((color) => color.id !== id));
   }
+
+  // function handleDeleteColor aus ColorForm.jsx in die App.jsx verschoben (jetzt wie in Laura's Code);
+  // es hatte vorher auch funktioniert, aber es hatte Fehlermeldungen gegeben; jetzt nicht mehr. :)
 
   // my latest version (verworfen!) before Laura found the solution:
   // // function handleDeleteColor(colorToDelete) {
