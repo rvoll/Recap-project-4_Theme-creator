@@ -4,7 +4,13 @@ import ColorForm from "./Components/ColorForm/ColorForm";
 import "./App.css";
 import { useState } from "react";
 import { uid } from "uid";
-// DONE WITH ADD COLOR
+// DONE WITH ADD COLOR and DELETE COLOR! (SURE IT WORKS???)
+
+// ==== NOW CLEAN UP!!! ==== CLEAN UP!!! ==== CLEAN UP!!! ==== CLEAN UP!!!
+// ==== CLEAN UP!!! ==== CLEAN UP!!! ==== CLEAN UP!!! ==== CLEAN UP!!!
+
+//  ===== AND FIND PROBLEMS!!! (see Terminal/Problems below) ======
+//  ===== AND FIND PROBLEMS!!! (see Terminal/Problems below) ======
 
 // NOW - DELETE COLOR:
 // I want to delete a color from the theme, so that I can
@@ -23,10 +29,11 @@ console.log("App.jsx is connected!");
 function App() {
   // =================Warum muss Laura die initialColors nicht importieren??
   const [colors, setColors] = useState(initialColors);
-  console.log("allColors", colors);
+  // console.log("allColors", colors);
 
   // Hier definieren wir jetzt die Funktion OnSubmit
   function handleAddColor(newColor) {
+    const [colors, setColors] = useState(initialColors);
     // jetzt wird eine color zu den initial colors hinzugefügt:
     setColors([{ ...newColor, id: uid() }, ...colors]);
   }

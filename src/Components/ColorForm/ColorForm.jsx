@@ -3,6 +3,8 @@ import ColorInput from "../ColorInput/ColorInput";
 import "../Color/Color.jsx";
 
 /////////////////////////////////////////////////
+// Error message: 'handleDeleteColor' is defined but never used. [L6,Col1]
+// Strange; Laura has the same code here but does not get this error message
 
 /////////////////////////////////////////////////
 // ColorForm component:
